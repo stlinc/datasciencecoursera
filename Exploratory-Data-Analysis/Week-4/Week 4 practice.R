@@ -91,3 +91,20 @@ fileUrl1 <- "https://raw.githubusercontent.com/jtleek/modules/master/04_Explorat
 download.file(fileUrl1, destfile="./data/RD_501_88101_1999-0.txt", method="wininet")
 fileUrl2 <- "https://raw.githubusercontent.com/jtleek/modules/master/04_ExploratoryAnalysis/CaseStudy/pm25_data/RD_501_88101_2012-0.txt"
 download.file(fileUrl2, destfile="./data/RD_501_88101_2012-0.txt", method="wininet")
+# read in raw data from 1999
+pm0 <- read.table("pm25_data/RD_501_88101_1999-0.txt", comment.char = "#", header = FALSE, sep = "|", na.strings = "")
+# read in headers/column lables
+cnames <- readLines("pm25_data/RD_501_88101_1999-0.txt", 1)
+# convert string into vector
+cnames <- strsplit(substring(cnames, 3), "|", fixed = TRUE)
+# make vector the column names
+names(pm0) <- make.names(cnames[[1]])
+# we are interested in the pm2.5 readings in the "Sample.Value" column
+x0 <- pm0$Sample.Value
+# read in the data from 2012
+pm1 <- read.table("pm25_data/RD_501_88101_2012-0.txt", comment.char = "#", header = FALSE, sep = "|",
+                  na.strings = "", nrow = 1304290)
+# make vector the column names
+names(pm1) <- make.names(cnames[[1]])
+# take the 2012 data for pm2.5 readings
+x1 <- pm1$Sample.Value
