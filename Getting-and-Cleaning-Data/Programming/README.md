@@ -10,8 +10,8 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 
 
 ## Main steps in run_analysis.R
-1. Merges the training and the test sets to create one data set.
-1.1: Load Activities
+*1. Merges the training and the test sets to create one data set.
+*1.1: Load Activities
 1.2: Load Features
 1.3 Data loading for training set
 1.3.1 Load Training Subjects
