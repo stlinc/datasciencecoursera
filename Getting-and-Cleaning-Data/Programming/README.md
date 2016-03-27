@@ -14,15 +14,15 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
  * Load Activities
  * Load Features
  * Data loading for training set
-    Load Training Subjects;
-    Load Training Labels;
-    Load Training Data;
-    Bind Traing Labels + Data.
+    1. Load Training Subjects;
+    2. Load Training Labels;
+    3. Load Training Data;
+    4. Bind Traing Labels + Data.
  * Data loading for testing set
-    Load Testing Subjects;
-    Load Testing Labels;
-    Load Testing Data;
-    Bind Testing Labels + Data.
+    1. Load Testing Subjects;
+    2. Load Testing Labels;
+    3. Load Testing Data;
+    4. Bind Testing Labels + Data.
  * Merge Traingin and Testing Data into one set
 
 2. Extracts only the measurements on the mean and standard deviation for each measurement.
