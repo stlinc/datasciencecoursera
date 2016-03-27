@@ -1,5 +1,5 @@
 # Coursera -- Getting and Cleaning Data 
-Purpose :¡@Creating a tidy data set of wearable computing experiments data 
+Purpose : Creating a tidy data set of wearable computing experiments data 
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
 
