@@ -10,26 +10,27 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 
 
 ## Main steps in run_analysis.R
-
-1. Data loading for field name
-1.1: Load activity
+1. Merges the training and the test sets to create one data set.
+1.1: Load Activities
 1.2: Load Features
+1.3 Data loading for training set
+1.3.1 Load Training Subjects
+1.3.2 Load Training Labels
+1.3.3 Load Training Data
+1.3.4 Bind Traing Labels + Data
+1.4 Data loading for testing set
+1.4.1 Load Testing Subjects
+1.4.2 Load Testing Labels
+1.4.3 Load Testing Data
+1.4.4 Bind Testing Labels + Data
+1.5 Merge Traingin and Testing Data into one set
 
-2. Data loading for training set
-2.0: Load training subject
-2.1: Load training label
-2.2 Load training data
-2.3 Bind label + data
+2. Extracts only the measurements on the mean and standard deviation for each measurement.
 
-3. data loading for test set 
-3.0: Load testing subject
-3.1: Load testing label
-3.2 Load testing data
-3.3 Bind label + data
+3. Uses descriptive activity names to name the activities in the data set. 
 
-4. merge test + training dataset into one
-4.1 assign field name
-4.2 select mean, std wording columns into a new data frame
-4.3 merge activity description
-4.4 prepare the final summary 
-4.5 write to text file
+4. Appropriately labels the data set with descriptive variable names.
+
+5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+6. Write to text file
