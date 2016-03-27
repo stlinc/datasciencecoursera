@@ -77,7 +77,7 @@
 [73] "frequencyBodyAccelerometerMagnitude-meanFreq()"    
 [74] "frequencyBodyAccelerometerJerkMagnitude-mean()"    
 [75] "frequencyBodyAccelerometerJerkMagnitude-std()"     
-[76] "frequencyBodyAccelerometerJerkMagnitude-meanFreq()"
+[76] "frequencyBodyAccelerometerJerkMagnitude-meanFreq()";
 [77] "frequencyBodyGyroscopeMagnitude-mean()"            
 [78] "frequencyBodyGyroscopeMagnitude-std()"             
 [79] "frequencyBodyGyroscopeMagnitude-meanFreq()"        
