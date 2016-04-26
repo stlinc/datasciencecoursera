@@ -365,4 +365,25 @@ summary(fit1)
 summary(fit2)
 install.packages("lmtest")
 library(lmtest)
-lrtest(fit1, fit2)
+lrtest(fit2, fit1)
+
+# Q 4.How is the wt coefficient interpretted?
+fit1 <- lm(mpg ~ I(wt * 0.5) + factor(cyl), data = mtcars)
+fit2 <- lm(mpg ~ wt + factor(cyl), data = mtcars)
+summary(fit1)$coef
+summary(fit2)$coef
+# wt is unit of 1,000 lb, 0.5*wt doubles beta. So the answer is "The estimated expected change in MPG per one ton increase in weight for a specific number of cylinders (4, 6, 8)."
+
+# Q 5.Give the hat diagonal for the most influential point
+x <- c(0.586, 0.166, -0.042, -0.614, 11.72)
+y <- c(0.549, -0.026, -0.127, -0.751, 1.344)
+fit <- lm(y ~ x)
+max(hatvalues(fit))
+
+# Q 6.Give the slope dfbeta for the point with the highest hat value.
+x <- c(0.586, 0.166, -0.042, -0.614, 11.72)
+y <- c(0.549, -0.026, -0.127, -0.751, 1.344)
+fit <- lm(y ~ x)
+r <- which.max(hatvalues(fit))
+inflm <- influence.measures(fit)
+dfbetas(fit)[r,2]
