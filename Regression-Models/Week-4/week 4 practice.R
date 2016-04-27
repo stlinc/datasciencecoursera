@@ -182,8 +182,55 @@ logRegShuttle <- glm(y ~ x-1,family="binomial")
 summary(logRegShuttle)
 
 # Shuttle fitted values
+par(mfrow = c(1,1))
 plot(x,logRegShuttle$fitted,pch=19,col="blue",xlab="Score",ylab="Prob Auto")
 
 # Odds ratios
 exp(logRegShuttle$coeff)[1]/exp(logRegShuttle$coeff)[2]
 # 0.9686888
+
+# Q 2. Give the estimated odds ratio for autolander use comparing head winds (numerator) to tail winds (denominator) adjusting for wind strength from the variable magn.
+x2 <- factor(shuttle$magn)
+logRegShuttle <- glm(y ~ x+x2-1,family="binomial")
+summary(logRegShuttle)
+# Odds ratios
+exp(logRegShuttle$coeff)[1]/exp(logRegShuttle$coeff)[2]
+
+# Q 3. If you fit a logistic regression model to a binary variable, for example use of the autolander, then fit a logistic regression model for one minus the outcome (not using the autolander) what happens to the coefficients?
+# Y' = 1-Y -> q = P(Y') = 1-P(Y) = 1 - p, because Y is abinary variable
+# log(q/(1-q)) = a0+a1*X; log(p/(1-p)) = b0+b1*X
+# Take exp on both sides: q/(1-q) = (1-p)/p = exp(a0+a1*X); p/(1-p) = exp(b0+b1*X)
+# exp(-a0-a1*X) = exp(b0+b1*X)
+# -a0 = b0; -a1 = b1
+# The coefficients reverse their signs.
+
+# Q 4. Consider the insect spray data 𝙸𝚗𝚜𝚎𝚌𝚝𝚂𝚙𝚛𝚊𝚢𝚜. Fit a Poisson model using spray as a factor level. Report the estimated relative rate comapring spray A (numerator) to spray B (denominator).
+data(InsectSprays)
+# construct Poisson regression model
+glm <- glm(InsectSprays$count ~ factor(InsectSprays$spray)-1,family="poisson")
+summary(glm)
+exp(glm$coeff)[1]/exp(glm$coeff)[2]
+
+# Q 5. Consider a Poisson glm with an offset, t. So, for example, a model of the form 𝚐𝚕𝚖(𝚌𝚘𝚞𝚗𝚝 ~ 𝚡 + 𝚘𝚏𝚏𝚜𝚎𝚝(𝚝), 𝚏𝚊𝚖𝚒𝚕𝚢 = 𝚙𝚘𝚒𝚜𝚜𝚘𝚗) where 𝚡 is a factor variable comparing a treatment (1) to a control (0) and 𝚝 is the natural log of a monitoring time. What is impact of the coefficient for 𝚡 if we fit the model 𝚐𝚕𝚖(𝚌𝚘𝚞𝚗𝚝 ~ 𝚡 + 𝚘𝚏𝚏𝚜𝚎𝚝(𝚝𝟸), 𝚏𝚊𝚖𝚒𝚕𝚢 = 𝚙𝚘𝚒𝚜𝚜𝚘𝚗) where 𝟸 <- 𝚕𝚘𝚐(𝟷𝟶) + 𝚝? In other words, what happens to the coefficients if we change the units of the offset variable. (Note, adding log(10) on the log scale is multiplying by 10 on the original scale.)
+# Note, the coefficients are unchanged, except the intercept, which is shifted by log(10). Recall that, except the intercept, all of the coefficients are interpretted as log relative rates when holding the other variables or offset constant. Thus, a unit change in the offset would cancel out. This is not true of the intercept, which is interperted as the log rate (not relative rate) with all of the covariates set to 0.
+
+# Q 6. Using a knot point at 0, fit a linear model that looks like a hockey stick with two lines meeting at x=0. Include an intercept term, x and the knot point term. What is the estimated slope of the line after 0?
+x <- -5:5
+y <- c(5.12, 3.93, 2.67, 1.87, 0.52, 0.08, 0.93, 2.05, 2.54, 3.87, 4.97)
+# define 1 knot point
+knot <- 0
+# define the ()+ function to only take the values that are positive after the knot pt
+splineTerm <- sapply(knot, function(knot) (x > knot) * (x - knot))
+# define the predictors as X and spline term
+xMat <- cbind(x, splineTerm)
+# fit linear models for y vs predictors
+fit <- lm(y ~ xMat)
+yhat <- predict(fit)
+summary(fit)
+# plot data points (x, y)
+plot(x, y, frame = FALSE, pch = 21, bg = "lightblue")
+# plot fitted values
+lines(x, yhat, col = "red", lwd = 2)
+#Coefficients are relative to each other, because variables are binary.
+fit$coef[2]+fit$coef[3]
+
