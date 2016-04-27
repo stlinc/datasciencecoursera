@@ -172,3 +172,18 @@ lines(c(0, 1 : 8, 9), c(0, coef(fit)^2, 0), type = "l", lwd = 3, col = "red")
 a <- fft(chord)
 # plot only the real components of the fft
 plot(Re(a)^2, type = "l")
+
+# Quiz
+# Q 1. Consider modeling the use of the autolander as the outcome (variable name use). Fit a logistic regression model with autolander (variable auto) use (labeled as "auto" 1) versus not (0) as predicted by wind sign (variable wind). Give the estimated odds ratio for autolander use comparing head winds, labeled as "head" in the variable headwind (numerator) to tail winds (denominator).
+library(MASS); data(shuttle)
+x <- factor(shuttle$wind)
+y <- 1* (shuttle$use == "auto")
+logRegShuttle <- glm(y ~ x-1,family="binomial")
+summary(logRegShuttle)
+
+# Shuttle fitted values
+plot(x,logRegShuttle$fitted,pch=19,col="blue",xlab="Score",ylab="Prob Auto")
+
+# Odds ratios
+exp(logRegShuttle$coeff)[1]/exp(logRegShuttle$coeff)[2]
+# 0.9686888
