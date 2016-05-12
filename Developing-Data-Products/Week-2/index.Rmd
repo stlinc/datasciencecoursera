@@ -1,0 +1,48 @@
+---
+title       : My first try on slidiy decks
+subtitle    : Trial version
+author      : ST Lin
+job         : 
+framework   : shower        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+logo        : 
+url:
+  lib: ../../libraries
+  assets: ../../assets
+widgets     : [mathjax, bootstrap, quiz]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Read-And-Delete
+
+1. Edit YAML front matter
+2. Write using R Markdown
+3. Use an empty line followed by three dashes to separate slides!
+
+--- .class #id 
+
+## Slide 2
+- Equations
+1. $x^2$
+2. Centered $$\frac{-b \pm \sqrt{b^2 - 4 a c}}{2a}$$
+3. Left-aligned $\frac{y - mu}{\sqrt{sigma^2}$
+
+--- &radio
+## Question 1
+
+What is 1 + 1?
+
+1. 1
+2. _2_
+3. 3
+4. 4
+*** .hint
+This is a hint
+
+*** .explanation
+This is an explanation
+
+
+
